@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Example App</title>
+
+</head>
+
+<body>
+    {{{body}}}
+    <button id="ga">CLICK ME!</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+        import { getAnalytics, logEvent, setUserProperties } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyDSspvRf49st3l7shwfMKFFhxQPXFY8UAA",
+            authDomain: "spattyfay.firebaseapp.com",
+            projectId: "spattyfay",
+            storageBucket: "spattyfay.appspot.com",
+            messagingSenderId: "947132333767",
+            appId: "1:947132333767:web:412a7c212376c6e6fc88e2",
+            measurementId: "G-541V083KMW"
+        };
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); }
+
+        window.gtag("config", firebaseConfig.measurementId, {
+            cookie_domain: window.location.hostname,
+            cookie_flags: "SameSite=None;Secure",
+        });
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        setUserProperties(analytics, { platform: 'web' });
+
+        logEvent(analytics, "WEB-APP")
+
+        $('#ga').click(function () {
+            logEvent(analytics, "WEB-APP")
+            console.log("CORRE")
+        })
+
+
+
+    </script>
+</body>
+
+</html>
